@@ -1,0 +1,19 @@
+<#@ template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" language="C#v3.5" debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ include file="PageObjectGeneratorByXPath.ttinclude" #>
+<#
+ 	string url = "Login.aspx";
+   
+	var mainClass = new ClassInfo {
+		ClassName = "Login", 
+		Elements = 
+	@"/html/body/form[@id='form1']/div[3]/table/tbody/tr[1]/td/span[@id='lblMessage']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[2]/td[2]/input[@id='txtUser']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[3]/td[2]/input[@id='txtPassword']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[4]/td/input[@id='btnLogin']"};
+	var rowClasses = new List<ClassRowInfo>();
+#>
+
+<# 
+	RenderClasses( mainClass, rowClasses, url);
+#>
