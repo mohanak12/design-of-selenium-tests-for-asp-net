@@ -1,0 +1,153 @@
+<#@ template language="C#v3.5"  hostspecific="True" debug="True" #>
+<#@ output extension="cs" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name = "SeleniumObjectModel.dll" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="SeleniumObjectModel.Template" #>
+
+<#+ 
+	// Sample XPath that can be used to select all components: //a[contains(@id,'_btn')]/span | //input | //select | //textarea
+  	// Note: You can call this method from the outside of the template,
+  	//       please add parameters as needed.	
+  	// To include this template just drag this file on another editor
+  	// then call this.Template_PageObjectGeneratorByXPath_Render()
+  				
+#>
+
+<#+
+  	void RenderClasses(ClassInfo mainClass, IList<ClassRowInfo> rowClasses, string url)
+	{		
+		var renderClass = ControlXPathParser.Render(mainClass, rowClasses);
+#>
+		using Tests.SmokeTest.Core;
+		using Tests.SmokeTest.PageObjects.Controls;
+		using Selenium;
+		
+		namespace  Tests.SmokeTest.PageObjects
+		{
+			public partial class <#=renderClass.Name#>Page : PageBase
+			{
+				public <#=renderClass.Name#>Page() : base("<#=url#>") { }
+				
+				<#+ RenderControls(renderClass.Items, false); #>
+				
+				<#+ 
+					RenderCollections(renderClass.Collections); 
+				#>
+			}
+			
+			<#+ 
+				RenderRowClasses(renderClass.Collections); 
+			#>
+		}
+<#+
+	}	
+#>
+
+<#+
+private void RenderRowClasses(IList<RenderCollection> rows)
+{
+	foreach(var item in rows)
+	{
+		RenderRowClass(item);
+	}
+}
+
+private void RenderCollections(IList<RenderCollection> rows)
+{
+	foreach(var item in rows)
+	{
+		RenderCollection(item);
+	}
+}
+	
+private void RenderControls(IList<RenderItem> items, bool isInsertNumber)
+{
+	foreach(var item in items)
+	{
+		Render(item, isInsertNumber);
+	}
+}
+
+private void Render(RenderItem item, bool isInsertNumber)
+{
+	var xpath = isInsertNumber ? "string.Format(@\"" + item.XPath + "\", _number)"  : "@\"" + item.XPath + "\"";
+	
+	if(item.Type == "Button")
+	{
+		RenderButton(xpath, item.Name);
+	} 
+	else
+	{
+		RenderControl(xpath, item.Type, item.Name);
+	}
+}
+
+private void RenderButton(string id, string name)
+{
+	#>
+	public void Click<#=name#>()
+	{
+		Selenium.Click(<#=id#>);
+	}
+	<#+	
+}
+private void RenderControl(string xpath, string type, string name)
+{
+	var privateName = "_" + char.ToLower(name[0]) + name.Substring(1);
+	#>
+		private <#=type#> <#=privateName#> = null;
+		public <#=type#> <#=name#>
+		{
+			get
+			{
+				if(<#=privateName#> == null)
+				{
+					<#=privateName#> = new <#=type#>(Selenium, <#=xpath#>);
+				}
+				return <#=privateName#>;
+			}
+		}
+<#+
+}
+#>
+
+
+<#+
+  	void RenderRowClass(RenderCollection renderClass)
+	{		
+#>
+		public partial class <#=renderClass.Name#>PageRow : ControlBase
+		{
+		 	private readonly int _number;
+			
+			public <#=renderClass.Name#>PageRow(ISelenium selenium, int number) : base(selenium)
+			{
+            	_number = number;
+        	}
+	
+			<#+ RenderControls(renderClass.Items, true); #>
+		}
+<#+
+	}	
+#>
+
+<#+
+  	void RenderCollection(RenderCollection renderClass)
+	{		
+#>
+		public int Get<#=renderClass.Name#>RowsCount()
+		{
+			return (int)Selenium.GetXpathCount("<#=renderClass.Counter#>");
+		}
+		 
+		public <#=renderClass.Name#>PageRow Get<#=renderClass.Name#>Row(int number)
+		{
+			return new <#=renderClass.Name#>PageRow(Selenium, number);
+		}
+<#+
+	}	
+#>
+
+
