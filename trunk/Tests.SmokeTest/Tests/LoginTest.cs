@@ -8,7 +8,7 @@ namespace Tests.SmokeTest.Tests
     public class LoginTest
     {
         private SeleniumScope _scope;
-        private Navigator _navigator;
+        private INavigator _navigator;
 
         [TestFixtureSetUp]
         public void Setup()

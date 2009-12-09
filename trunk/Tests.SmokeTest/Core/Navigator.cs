@@ -6,7 +6,7 @@ using Selenium;
 
 namespace Tests.SmokeTest.Core
 {
-    public class Navigator
+    public class Navigator : INavigator
     {
         private readonly ISelenium _selenium;
 
