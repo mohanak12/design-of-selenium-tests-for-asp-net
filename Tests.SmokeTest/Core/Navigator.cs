@@ -9,6 +9,7 @@ namespace Tests.SmokeTest.Core
     public class Navigator : INavigator
     {
         private readonly ISelenium _selenium;
+        private SeleniumScope _scope;
 
         private static string BaseUrl
         {
@@ -18,9 +19,10 @@ namespace Tests.SmokeTest.Core
             }
         }
 
-        public Navigator(ISelenium selenium)
+        public Navigator()
         {
-            _selenium = selenium;
+            _scope = new SeleniumScope();
+            _selenium = _scope.Selenium;
         }
 
         public TT Open<TT>() where TT : PageBase, new()
@@ -30,8 +32,6 @@ namespace Tests.SmokeTest.Core
 
             _selenium.Open(Path.Combine(BaseUrl, target.PageUrl));
 
-
-            
             WaitLoad(target);
             AssertCorrectPageLoaded(target);
             return target;
@@ -94,6 +94,11 @@ namespace Tests.SmokeTest.Core
         private void InitPage<TT>(TT target) where TT : PageBase
         {
             target.Selenium = _selenium;
+        }
+
+        public void Dispose()
+        {
+            _scope.Dispose();
         }
     }
 }
