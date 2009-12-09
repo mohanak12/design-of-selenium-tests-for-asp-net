@@ -7,7 +7,7 @@
 	var mainClass = new ClassInfo {
 		ClassName = "Home", 
 		Elements = 
-	@"/html/body/form[@id='form1']/div[3]/table/tbody/tr[1]/td/span[@id='lblUserName']"};
+	@"/html/body/form[@id='form1']/div[3]/span[@id='lblUserName']"};
 	var rowClasses = new List<ClassRowInfo>();
 #>
 

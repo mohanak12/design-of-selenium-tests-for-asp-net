@@ -18,7 +18,7 @@
 			{
 				if(_userName == null)
 				{
-					_userName = new Label(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[1]/td/span[@id='lblUserName']");
+					_userName = new Label(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/span[@id='lblUserName']");
 				}
 				return _userName;
 			}
