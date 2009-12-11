@@ -4,14 +4,13 @@ using Tests.SmokeTest.PageObjects;
 
 namespace Tests.SmokeTest.Flows
 {
-    public class HomePageFlow
+    public class HomePageFlow : FlowBase
     {
-        private readonly INavigator _navigator;
         private readonly HomePage _home;
 
-        public HomePageFlow(INavigator navigator, HomePage home)
+        public HomePageFlow(INavigator navigator, HomePage home) 
+            : base(navigator)
         {
-            _navigator = navigator;
             _home = home;
         }
 
