@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -15,8 +16,9 @@ namespace SampleApplication.Services
     public class Guard : WebService
     {
         [WebMethod]
-        public string GetUserName()
+        public string GetCurrentUser()
         {
+            Thread.Sleep(500);
             return HttpContext.Current.User.Identity.Name;
         }
     }

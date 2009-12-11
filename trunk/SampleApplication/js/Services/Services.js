@@ -4,12 +4,9 @@ function Services(baseUrl)
     this.baseUrl = baseUrl;
 }
 
-Services.prototype.GetVendor = function(vendorId, callback)
+Services.prototype.GetCurrentUser = function(callback)
 {
-    this.Callback("Services/Guard.asmx", 'GetUserName', 
-        {
-        }, 
-        callback, function() { } );  
+    this.SimpleCallback("Services/Guard.asmx", 'GetCurrentUser', callback, function() { } );  
 };
 
 Services.prototype.SimpleCallback = function(serviceName, methodName, succeed, failed)
