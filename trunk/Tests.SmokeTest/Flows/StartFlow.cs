@@ -3,20 +3,17 @@ using Tests.SmokeTest.PageObjects;
 
 namespace Tests.SmokeTest.Flows
 {
-    public class StartFlow
+    public class StartFlow : FlowBase
     {
-        private readonly INavigator _navigator;
-
         public StartFlow(INavigator navigator)
-        {
-            _navigator = navigator;
-        }
+            : base(navigator)
+        { }
 
         public LoginPageFlow GoToLoginPage()
         {
-            var loginPage = _navigator.Open<LoginPage>();
+            var loginPage = Navigator.Open<LoginPage>();
 
-            return new LoginPageFlow(_navigator, loginPage);
+            return new LoginPageFlow(Navigator, loginPage);
         }
 
         public HomePageFlow LoginAndGoToHomePage()

@@ -62,6 +62,7 @@
     <Compile Include="Core\Navigator.cs" />
     <Compile Include="Core\PageBase.cs" />
     <Compile Include="Core\SeleniumScope.cs" />
+    <Compile Include="Flows\FlowBase.cs" />
     <Compile Include="Flows\HomePageFlow.cs" />
     <Compile Include="Flows\LoginPageFlows.cs" />
     <Compile Include="Flows\StartFlow.cs" />

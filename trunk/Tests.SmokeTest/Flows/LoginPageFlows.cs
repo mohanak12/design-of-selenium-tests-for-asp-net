@@ -5,14 +5,13 @@ using Tests.SmokeTest.PageObjects;
 
 namespace Tests.SmokeTest.Flows
 {
-    public class LoginPageFlow
+    public class LoginPageFlow : FlowBase
     {
-        private readonly INavigator _navigator;
         private readonly LoginPage _login;
 
         public LoginPageFlow(INavigator navigator, LoginPage login)
+            : base(navigator)
         {
-            _navigator = navigator;
             _login = login;
         }
 
@@ -31,16 +30,16 @@ namespace Tests.SmokeTest.Flows
 
         public HomePageFlow Login()
         {
-            var homePage = _navigator.Navigate<HomePage>(_login.ClickLogin);
+            var homePage = Navigator.Navigate<HomePage>(_login.ClickLogin);
 
-            return new HomePageFlow(_navigator, homePage);
+            return new HomePageFlow(Navigator, homePage);
         }
 
         public LoginPageFlow LoginShouldFail()
         {
-            var loginNew = _navigator.Navigate<LoginPage>(_login.ClickLogin);
+            var loginNew = Navigator.Navigate<LoginPage>(_login.ClickLogin);
 
-            return new LoginPageFlow(_navigator, loginNew);
+            return new LoginPageFlow(Navigator, loginNew);
         }
 
         public void AssertMessage(string message)

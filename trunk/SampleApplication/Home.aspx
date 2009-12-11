@@ -11,8 +11,7 @@
     <div>
         You are logged in as: <asp:Label ID="lblUserName" runat="server"></asp:Label>
         
-        <asp:Button  ID="btnLogout" runat="server" Text="Logout" 
-            onclick="btnLogout_Click" /> 
+        <asp:Button  ID="btnLogout" runat="server" Text="Logout" onclick="btnLogout_Click" /> 
     </div>
     </form>
 </body>
