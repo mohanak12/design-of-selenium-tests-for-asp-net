@@ -16,6 +16,8 @@ namespace Tests.SmokeTest.Flows
 
         public HomePageFlow AssertUserName(string userName)
         {
+            Navigator.WaitForText(_home.UserName.Selector);
+
             Assert.That(_home.UserName.GetText(), Is.EqualTo(userName));
 
             return this;
