@@ -8,6 +8,7 @@ namespace Tests.SmokeTest.Core
 {
     public class Navigator : INavigator
     {
+        private const string Timeout = "120000";
         private readonly ISelenium _selenium;
         private SeleniumScope _scope;
 
@@ -39,7 +40,7 @@ namespace Tests.SmokeTest.Core
 
         private void WaitLoad<TT>(TT target) where TT : PageBase
         {
-            _selenium.WaitForPageToLoad("120000");
+            _selenium.WaitForPageToLoad(Timeout);
         }
 
         private void AssertCorrectPageLoaded<TT>(TT target) where TT : PageBase
@@ -61,6 +62,15 @@ namespace Tests.SmokeTest.Core
         public TT Navigate<TT>(Action action) where TT : PageBase, new()
         {
             return Navigate<TT>(action, false);
+        }
+
+        public void WaitForText(string selector)
+        {
+            selector = selector.Replace(@"'", @"\'");
+
+            string script = string.Format("var value = selenium.getText('{0}'); value.length > 0;", selector);
+
+            _selenium.WaitForCondition(script, Timeout);
         }
 
         public TT Navigate<TT>(Action action, bool chooseOkOnConfirmation) where TT : PageBase, new()
