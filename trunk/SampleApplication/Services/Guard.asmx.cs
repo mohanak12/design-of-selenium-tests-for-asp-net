@@ -21,7 +21,5 @@ namespace SampleApplication.Services
             Thread.Sleep(500);
             return HttpContext.Current.User.Identity.Name;
         }
-
-
     }
 }
