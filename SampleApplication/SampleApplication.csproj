@@ -55,15 +55,19 @@
   <ItemGroup>
     <Content Include="Home.aspx" />
     <Content Include="js\Frameworks\jquery-1.3.1.js" />
+    <Content Include="js\Frameworks\jquery-jtemplates.js" />
     <Content Include="js\Frameworks\JsInject.js" />
     <Content Include="js\Frameworks\json2.js" />
     <Content Include="js\Frameworks\service-proxy.js" />
     <Content Include="js\Mediators\HomeMediator.js" />
     <Content Include="js\Ignitions\HomeIgnition.js" />
     <Content Include="js\Services\Services.js" />
+    <Content Include="js\Widgets\AddUserWidget.js" />
+    <Content Include="js\Widgets\UserListWidget.js" />
     <Content Include="js\Widgets\UserNameWidget.js" />
     <Content Include="Login.aspx" />
     <Content Include="Services\Guard.asmx" />
+    <Content Include="Services\Users.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +90,16 @@
       <DependentUpon>Guard.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\Users.asmx.cs">
+      <DependentUpon>Users.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleApplication.Core\SampleApplication.Core.csproj">
+      <Project>{004B109A-E188-449A-85A7-A2C663FAD4C5}</Project>
+      <Name>SampleApplication.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

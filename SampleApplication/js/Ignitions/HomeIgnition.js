@@ -9,7 +9,15 @@ HomeIgnition.prototype.CreateAndRun = function()
     var containerBuilder = new JsInject.ContainerBuilder();
     containerBuilder.Register("Services", function(c) {return new Services(baseUrl);});
     containerBuilder.Register("UserNameWidget", function(c) {return new UserNameWidget();});
-    containerBuilder.Register("HomeMediator", function(c) {return new HomeMediator(c.Resolve("Services"), c.Resolve("UserNameWidget"));});
+    containerBuilder.Register("AddUserWidget", function(c) {return new AddUserWidget();});
+    containerBuilder.Register("UserListWidget", function(c) {return new UserListWidget();});
+    
+    containerBuilder.Register("HomeMediator", function(c) {return new HomeMediator(
+            c.Resolve("Services"),
+            c.Resolve("UserNameWidget"),
+            c.Resolve("AddUserWidget"),
+            c.Resolve("UserListWidget")
+            );});
 
     var container = containerBuilder.Create();
 
