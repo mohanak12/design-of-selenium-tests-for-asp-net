@@ -7,8 +7,25 @@
 	var mainClass = new ClassInfo {
 		ClassName = "Home", 
 		Elements = 
-	@"/html/body/form[@id='form1']/div[3]/span[@id='lblUserName']"};
+	@"/html/body/form[@id='form1']/div[3]/span[@id='lblUserName']
+/html/body/form[@id='form1']/div[3]/input[@id='btnLogout']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[2]/td[2]/input[@id='txtName']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[3]/td[2]/input[@id='txtPassword']
+/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/input[@id='txtMarker']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[4]/td/input[@id='btnAddUser']"};
 	var rowClasses = new List<ClassRowInfo>();
+	
+	rowClasses.Add(
+		new ClassRowInfo {
+			ClassName = "UserTable",
+			CountXpath = "/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/table/tbody/tr",
+			IteratorPattern = "tbody/tr[{0}]/td",
+			Elements = 
+@"/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/table/tbody/tr[1]/td[1] {Name=lblUser}
+/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/table/tbody/tr[1]/td[2] {Name=lblPassword}"
+		});
+
+	
 #>
 
 <# 

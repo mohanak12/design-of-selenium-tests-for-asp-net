@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using NUnit.Framework;
 using Selenium;
+using Tests.SmokeTest.PageObjects.Controls;
 
 namespace Tests.SmokeTest.Core
 {
@@ -38,9 +39,43 @@ namespace Tests.SmokeTest.Core
             return target;
         }
 
+        public TT Navigate<TT>(Action action) where TT : PageBase, new()
+        {
+            return Navigate<TT>(action, false);
+        }
+
+        public void ClickAndWaitForText(Action action, Func<string> getSelector)
+        {
+            action();
+            WaitForText(getSelector);
+        }
+
+        public void ClickAndWaitForElement(Action action, Func<string> getSelector)
+        {
+            action();
+            WaitElementIsPresent(getSelector);
+        }
+
         private void WaitLoad<TT>(TT target) where TT : PageBase
         {
             _selenium.WaitForPageToLoad(Timeout);
+        }
+
+        public void WaitForText(Func<string> selector)
+        {
+            WaitForCondition("var value = selenium.getText('{0}'); value.length > 0;", selector());
+        }
+
+        public void WaitElementIsPresent(Func<string> selector)
+        {
+            WaitForCondition("selenium.isElementPresent('{0}');", selector());
+        }
+
+        private void WaitForCondition(string condition, string selector)
+        {
+            string script = string.Format(condition, JsEncode(selector));
+
+            _selenium.WaitForCondition(script, Timeout);
         }
 
         private void AssertCorrectPageLoaded<TT>(TT target) where TT : PageBase
@@ -59,18 +94,9 @@ namespace Tests.SmokeTest.Core
             }
         }
 
-        public TT Navigate<TT>(Action action) where TT : PageBase, new()
+        private static string JsEncode(string selector)
         {
-            return Navigate<TT>(action, false);
-        }
-
-        public void WaitForText(string selector)
-        {
-            selector = selector.Replace(@"'", @"\'");
-
-            string script = string.Format("var value = selenium.getText('{0}'); value.length > 0;", selector);
-
-            _selenium.WaitForCondition(script, Timeout);
+            return selector.Replace(@"'", @"\'");
         }
 
         public TT Navigate<TT>(Action action, bool chooseOkOnConfirmation) where TT : PageBase, new()

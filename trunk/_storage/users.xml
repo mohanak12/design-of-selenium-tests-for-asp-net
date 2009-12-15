@@ -1,4 +1,5 @@
 <users>
   <user name="admin" password="god" />
   <user name="user" password="simple" />
+  <user name="TestUser" password="TestPassword" />
 </users>

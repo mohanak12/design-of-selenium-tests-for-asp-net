@@ -13,5 +13,15 @@ namespace Tests.SmokeTest.Tests
                 .LoginAndGoToHomePage()
                 .AssertUserName("admin");
         }
+
+        [Test]
+        public void AddUserTest()
+        {
+            Start
+                .LoginAndGoToHomePage()
+                .EnterNewUserNameAndPassword("TestUser", "TestPassword")
+                .ClickOnAddUser()
+                .AssertThatUserListContains("TestUser", "TestPassword");
+        }
     }
 }

@@ -30,7 +30,9 @@ HomeMediator.prototype.DocumentLoaded = function()
 HomeMediator.prototype.AddUser = function(name, password)
 {
     var me = this;
-    
+
+     me.userListWidget.Empty();
+
     this.services.AddUser(name, password, function (users) {
           me.BindUsers()
     });   
