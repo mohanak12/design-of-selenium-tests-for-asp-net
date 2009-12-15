@@ -1,4 +1,6 @@
 ﻿using System.Configuration;
+using System.IO;
+using System.Web;
 
 namespace SampleApplication.Core
 {
@@ -6,7 +8,7 @@ namespace SampleApplication.Core
     {
         public string Xml
         {
-            get { return ConfigurationManager.AppSettings["XmlFile"]; }
+            get { return Path.Combine(HttpContext.Current.Server.MapPath("/"), ConfigurationManager.AppSettings["XmlFile"]); }
         }
     }
 }

@@ -37,8 +37,6 @@
         
         <textarea id="templateUsers" style="display:none">
             {#template MAIN}
-                
-                
                 <table style="border:1px solid black">
                     {#foreach $T as u}
                     <tr >
@@ -47,8 +45,6 @@
                     </tr>
                     {#/for}
                 </table>
-                
-                <input type="text" id="txtMarker" />
             {#/template MAIN}
         </textarea>
         

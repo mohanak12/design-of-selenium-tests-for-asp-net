@@ -1,0 +1,17 @@
+<#@ template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" language="C#v3.5" debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ include file="PageObjectGeneratorByXPath.ttinclude" #>
+<#
+ 	string url = "Default.aspx";
+   
+	var mainClass = new ClassInfo {
+		ClassName = "StorageAdmin", 
+		Elements = 
+	@"/html/body/form[@id='form1']/div[3]/input[@id='btnClear']"};
+	var rowClasses = new List<ClassRowInfo>();
+	
+#>
+
+<# 
+	RenderClasses( mainClass, rowClasses, url);
+#>

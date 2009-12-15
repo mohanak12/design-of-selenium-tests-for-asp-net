@@ -1,38 +1,22 @@
 ﻿using System;
-using System.Configuration;
 using System.IO;
 using NUnit.Framework;
 using Selenium;
-using Tests.SmokeTest.PageObjects.Controls;
 
 namespace Tests.SmokeTest.Core
 {
     public class Navigator : INavigator
     {
         private const string Timeout = "120000";
-        private readonly ISelenium _selenium;
-        private SeleniumScope _scope;
-
-        private static string BaseUrl
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["SiteUrl"];
-            }
-        }
-
-        public Navigator()
-        {
-            _scope = new SeleniumScope();
-            _selenium = _scope.Selenium;
-        }
+        private ISelenium _selenium;
+        private string _siteUrl;
 
         public TT Open<TT>() where TT : PageBase, new()
         {
             var target = new TT();
             InitPage(target);
 
-            _selenium.Open(Path.Combine(BaseUrl, target.PageUrl));
+            _selenium.Open(Path.Combine(_siteUrl, target.PageUrl));
 
             WaitLoad(target);
             AssertCorrectPageLoaded(target);
@@ -143,9 +127,18 @@ namespace Tests.SmokeTest.Core
             target.Selenium = _selenium;
         }
 
+        public void Start(string siteUrl)
+        {
+            _siteUrl = siteUrl;
+
+            _selenium = new DefaultSelenium(Configuration.SeleniumHost, Configuration.SeleniumPort, "*firefox", _siteUrl);
+            _selenium.Start();
+            _selenium.SetTimeout(Timeout);
+        }
+
         public void Dispose()
         {
-            _scope.Dispose();
+            _selenium.Stop();
         }
     }
 }
