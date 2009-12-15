@@ -95,7 +95,7 @@
     <Compile Include="Tests\LoginTest.cs" />
     <Compile Include="Core\TestBase.cs" />
     <Compile Include="SetUpSUT.cs" />
-    <Compile Include="Tests\SetUpTest.cs" />
+    <Compile Include="Tests\UserManagementTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
