@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Tests.SmokeTest.Core;
 using Tests.SmokeTest.PageObjects;
 
@@ -19,6 +20,23 @@ namespace Tests.SmokeTest.Flows
             Navigator.WaitForText(_home.UserName.GetSelector);
 
             Assert.That(_home.UserName.GetText(), Is.EqualTo(userName));
+
+            return this;
+        }
+
+        public LoginPageFlow Logout()
+        {
+            var loginNew = Navigator.Navigate<LoginPage>(_home.ClickLogout);
+
+            return new LoginPageFlow(Navigator, loginNew);
+        }
+
+
+        public HomePageFlow AddUser(string userName, string password)
+        {
+            EnterNewUserNameAndPassword(userName, password);
+            ClickOnAddUser();
+            AssertErrorMessage("");
 
             return this;
         }
