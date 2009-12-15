@@ -40,7 +40,7 @@ namespace Tests.SmokeTest.Flows
             return this;
         }
 
-        public void AssertThatUserListContains(string name, string password)
+        public HomePageFlow AssertThatUserListContains(string name, string password)
         {
             var isExists = false;
 
@@ -55,6 +55,15 @@ namespace Tests.SmokeTest.Flows
             }
 
             Assert.That(isExists, Is.EqualTo(true), string.Format("User with name {0} and password {1} doesn't exists in user list table", name, password));
+
+            return this;
+        }
+
+        public HomePageFlow AssertErrorMessage(string message)
+        {
+            Assert.That(_home.Error.GetText(), Is.EqualTo(message));
+
+            return this;
         }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\UserRow.cs" />
+    <Compile Include="View\AddUserView.cs" />
     <Compile Include="View\UserView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

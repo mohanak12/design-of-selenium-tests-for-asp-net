@@ -25,6 +25,13 @@ namespace SampleApplication.Core.Data
             return GetAll()
                 .Where(r => r.Name == name && r.Password == password)
                 .Any();
+        } 
+        
+        public bool IsExists(string name)
+        {
+            return GetAll()
+                .Where(r => r.Name == name)
+                .Any();
         }
 
         public IList<UserRow> GetAll()

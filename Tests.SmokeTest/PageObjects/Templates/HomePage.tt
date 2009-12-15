@@ -9,10 +9,10 @@
 		Elements = 
 	@"/html/body/form[@id='form1']/div[3]/span[@id='lblUserName']
 /html/body/form[@id='form1']/div[3]/input[@id='btnLogout']
-/html/body/form[@id='form1']/div[3]/table/tbody/tr[2]/td[2]/input[@id='txtName']
-/html/body/form[@id='form1']/div[3]/table/tbody/tr[3]/td[2]/input[@id='txtPassword']
-/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/input[@id='txtMarker']
-/html/body/form[@id='form1']/div[3]/table/tbody/tr[4]/td/input[@id='btnAddUser']"};
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[3]/td[2]/input[@id='txtName']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[4]/td[2]/input[@id='txtPassword']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[5]/td/input[@id='btnAddUser']
+/html/body/form[@id='form1']/div[3]/table/tbody/tr[2]/td/span[@id='lblError']"};
 	var rowClasses = new List<ClassRowInfo>();
 	
 	rowClasses.Add(

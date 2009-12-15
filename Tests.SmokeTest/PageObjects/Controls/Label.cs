@@ -25,7 +25,7 @@ namespace Tests.SmokeTest.PageObjects.Controls
 
         public override String ToString()
         {
-            return GetText();
+            return "Label with text '" + GetText() + "'";
         }
     }
 }

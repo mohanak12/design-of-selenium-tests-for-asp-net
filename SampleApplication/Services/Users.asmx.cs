@@ -21,11 +21,26 @@ namespace SampleApplication.Services
     {
 
         [WebMethod]
-        public void AddUser(string name, string password)
+        public AddUserView AddUser(string name, string password)
         {
             Thread.Sleep(500);
 
-            Factory.GetGateway().AddUser(name, password);
+            var gateway = Factory.GetGateway();
+
+
+            var result = new AddUserView() {Success = true};
+
+            if(gateway.IsExists(name))
+            {
+                result.Success = false;
+                result.Message = string.Format("User with name '{0}' already exists", name);
+            }
+            else
+            {
+                gateway.AddUser(name, password);
+            }
+
+            return result;
         }
 
         [WebMethod]

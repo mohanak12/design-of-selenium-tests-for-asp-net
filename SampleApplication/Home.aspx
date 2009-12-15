@@ -54,6 +54,9 @@
             <tr>
                 <td colspan="2" style="background-color:lightblue;">Add user:</td>
             </tr>
+             <tr>
+                <td colspan="2"><span id="lblError"></span></td>
+            </tr>
             <tr>
                 <td>Name</td>
                 <td><input type="text" id="txtName" /></td>
