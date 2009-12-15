@@ -13,7 +13,5 @@ namespace Tests.SmokeTest.Tests
                 .LoginAndGoToHomePage()
                 .AssertUserName("admin");
         }
-
-        
     }
 }
