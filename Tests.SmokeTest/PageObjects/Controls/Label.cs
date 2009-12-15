@@ -18,9 +18,9 @@ namespace Tests.SmokeTest.PageObjects.Controls
             return Selenium.GetText(_selector);
         }
 
-        public string Selector
+        public string GetSelector()
         {
-            get { return _selector; }
+             return _selector; 
         }
 
         public override String ToString()

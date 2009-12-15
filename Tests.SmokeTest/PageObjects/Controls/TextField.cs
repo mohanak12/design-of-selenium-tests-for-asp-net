@@ -22,5 +22,10 @@ namespace Tests.SmokeTest.PageObjects.Controls
         {
             return Selenium.GetValue(_selector);
         }
+        
+        public String GetSelector()
+        {
+            return _selector;
+        }
     }
 }
