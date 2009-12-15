@@ -13,7 +13,8 @@ namespace Tests.SmokeTest.Tests
             {
                 navigator.Start(Configuration.StorageAdminSiteUrl);
                 var storageAdminPage = navigator.Open<StorageAdminPage>();
-                storageAdminPage.ClickClear();
+
+                navigator.Navigate<StorageAdminPage>(storageAdminPage.ClickClear);
             }
         }
 

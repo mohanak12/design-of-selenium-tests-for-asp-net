@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.SyntaxHelpers;
 using SeleniumObjectModel.Template;
 
 namespace SeleniumObjectModel.Tests
@@ -16,7 +15,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(3));
+            Assert.That(items, Has.Count.EqualTo(3));
         }
 
         [Test]
@@ -26,7 +25,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=/html/body/form[@id='aspnetForm']/div[@id='content']/div[2]/div[1]/table[1]/tbody/tr/td[1]/table/tbody/tr[1]/td/input[@id='ctl00_ctl00_ctl00_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_txtFundID']"));
             Assert.That(items[0].Name, Is.EqualTo("FundID"));
             Assert.That(items[0].Type, Is.EqualTo("TextField"));
@@ -39,7 +38,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=/html/body/form[@id='aspnetForm']/div[@id='content']/div[3]/div[2]/div[@id='ctl00_ctl00_ctl00_ctl00_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_CollapsiblePanel2']/table[@id='ctl00_ctl00_ctl00_ctl00_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_editFundTable']/tbody/tr/td/div[1]/table/tbody/tr[6]/td/table/tbody/tr[1]/td/input[@id='ctl00_ctl00_ctl00_ctl00_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_txtTotalDollarsInvested_txtCurrency']"));
             Assert.That(items[0].Name, Is.EqualTo("TotalDollarsInvested"));
             Assert.That(items[0].Type, Is.EqualTo("TextField"));
@@ -52,7 +51,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("FundID"));
             Assert.That(items[0].Type, Is.EqualTo("TextField"));
@@ -65,7 +64,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("FundID"));
             Assert.That(items[0].Type, Is.EqualTo("Checkbox"));
@@ -79,7 +78,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("FundID"));
             Assert.That(items[0].Type, Is.EqualTo("Dropdown"));
@@ -92,7 +91,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("Save"));
             Assert.That(items[0].Type, Is.EqualTo("Button"));
@@ -105,7 +104,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("Login"));
             Assert.That(items[0].Type, Is.EqualTo("Button"));
@@ -118,7 +117,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("AddNew"));
             Assert.That(items[0].Type, Is.EqualTo("Button"));
@@ -131,7 +130,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("FundName"));
             Assert.That(items[0].Type, Is.EqualTo("Label"));
@@ -144,7 +143,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("Message"));
             Assert.That(items[0].Type, Is.EqualTo("Label"));
@@ -157,7 +156,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=" + elements));
             Assert.That(items[0].Name, Is.EqualTo("FundName"));
             Assert.That(items[0].Type, Is.EqualTo("Label"));
@@ -170,7 +169,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements);
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=/html/body/form[@id='aspnetForm']/div[@id='content']/div[2]/div[2]/table[@id='ctl00_ctl00_ctl00_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_dgrdFunds']/tbody/tr[0]/td[3]/span[0]"));
             Assert.That(items[0].Name, Is.EqualTo("FundName"));
             Assert.That(items[0].Type, Is.EqualTo("Label"));
@@ -183,7 +182,7 @@ namespace SeleniumObjectModel.Tests
 
             var items = ControlXPathParser.GetItems(elements, "/tbody/tr[{0}]/td[3]");
 
-            Assert.That(items, Has.Count(1));
+            Assert.That(items, Has.Count.EqualTo(1));
             Assert.That(items[0].XPath, Is.EqualTo("xpath=/html/body/form[@id='aspnetForm']/div[@id='content']/div[2]/div[2]/table[@id='ctl00_ctl00_ctl00_MainContantPlaceHolder_MainContantPlaceHolder_MainContantPlaceHolder_dgrdFunds']/tbody/tr[{0}]/td[3]/span[@id='_lblFundName']"));
         }
     }
