@@ -15,7 +15,7 @@ namespace Tests.SmokeTest.Tests
         }
 
         [Test]
-        public void AddUserTest()
+        public void NewlyAddedUserAppearsInUsersListTest()
         {
             Start
                 .LoginAndGoToHomePage()
@@ -26,7 +26,7 @@ namespace Tests.SmokeTest.Tests
         }
 
         [Test]
-        public void AddDuplicateUserShouldFailTest()
+        public void InsertionOfDuplicateUserFailedTest()
         {
             Start
                 .LoginAndGoToHomePage()
