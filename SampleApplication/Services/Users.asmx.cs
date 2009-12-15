@@ -25,7 +25,7 @@ namespace SampleApplication.Services
         {
             Thread.Sleep(500);
 
-            GetGateway().AddUser(name, password);
+            Factory.GetGateway().AddUser(name, password);
         }
 
         [WebMethod]
@@ -33,7 +33,7 @@ namespace SampleApplication.Services
         {
             Thread.Sleep(500);
 
-            return GetGateway().GetAll().Select(
+            return Factory.GetGateway().GetAll().Select(
                 r => new UserView()
                          {
                              Name = r.Name, 
@@ -41,9 +41,6 @@ namespace SampleApplication.Services
                          }).ToList();
         }
 
-        private static UserGateway GetGateway()
-        {
-            return new UserGateway(new Configuration());
-        }
+       
     }
 }

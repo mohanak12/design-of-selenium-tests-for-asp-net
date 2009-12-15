@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="SampleApplication.Home" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="SampleApplication.Home" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -10,7 +10,8 @@
     <script src="js/Frameworks/service-proxy.js" type="text/javascript"></script>
     <script src="js/Frameworks/JsInject.js" type="text/javascript"></script>
     <script src="js/Frameworks/json2.js" type="text/javascript"></script>
-
+    <script src="js/Frameworks/jquery-jtemplates.js" type="text/javascript"></script>
+    
     <script src="js/Ignitions/HomeIgnition.js" type="text/javascript"></script>
     <script src="js/Mediators/HomeMediator.js" type="text/javascript"></script>
     <script src="js/Services/Services.js" type="text/javascript"></script>
@@ -36,23 +37,22 @@
         
         <textarea id="templateUsers" style="display:none">
             {#template MAIN}
-             <div id="header">{$T.name}</div>
-             <table>
-             {#foreach $T.Users as u}
-              <tr>
-              <td>{$T.u.Name}</td>
-              <td>{$T.u.Password}</td>
-             </tr>
-             {#/for}
-             </table>
+                <table style="border:1px solid black">
+                    {#foreach $T as u}
+                    <tr >
+                        <td style="border:1px solid black">{$T.u.Name}</td>
+                        <td style="border:1px solid black">{$T.u.Password}</td>
+                    </tr>
+                    {#/for}
+                </table>
             {#/template MAIN}
         </textarea>
         
         <br />
         <br />
-        <table>
+        <table style="border:1px solid black">
             <tr>
-                <td colspan="2">Add user:</td>
+                <td colspan="2" style="background-color:lightblue;">Add user:</td>
             </tr>
             <tr>
                 <td>Name</td>
@@ -66,8 +66,11 @@
                 <td colspan="2"> <input type="button" id="btnAddUser" Value="Add" /></td>
             </tr>
         </table>
-        
-       <div id="holderUsers"></div>
+        <br/>
+        <br/>
+        <br/>
+        List Of Users:
+        <div id="holderUsers"></div>
     </div>
     </form>
 </body>

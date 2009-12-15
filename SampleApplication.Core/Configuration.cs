@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Configuration;
 
 namespace SampleApplication.Core
 {
@@ -6,7 +6,7 @@ namespace SampleApplication.Core
     {
         public string Xml
         {
-            get { throw new NotImplementedException(); }
+            get { return ConfigurationManager.AppSettings["XmlFile"]; }
         }
     }
 }

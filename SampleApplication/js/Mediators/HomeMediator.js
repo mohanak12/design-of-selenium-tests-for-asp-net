@@ -41,6 +41,6 @@ HomeMediator.prototype.BindUsers = function()
     var me = this;
     
     this.services.GetAllUsers(function (users) {
-          me.userListWidget.Bind(users);
+          me.userListWidget.Render(users.d);
     });    
 };

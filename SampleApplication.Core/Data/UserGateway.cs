@@ -32,7 +32,7 @@ namespace SampleApplication.Core.Data
             IList<UserRow> rows = new List<UserRow>();
 
             var doc = Load();
-            foreach (XmlNode node in doc.ParentNode.ChildNodes)
+            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
             {
                 rows.Add(new UserRow()
                              {
@@ -52,8 +52,7 @@ namespace SampleApplication.Core.Data
             userElement.Attributes.Append(nameAttribute);
             userElement.Attributes.Append(passwordAttribute);
 
-            doc.ParentNode.AppendChild(userElement);
-
+            doc.DocumentElement.AppendChild(userElement);
 
             nameAttribute.Value = name;
             passwordAttribute.Value = password;
