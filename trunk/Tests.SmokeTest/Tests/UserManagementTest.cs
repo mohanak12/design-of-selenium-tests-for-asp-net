@@ -11,9 +11,7 @@ namespace Tests.SmokeTest.Tests
         {
             Start
                 .LoginAndGoToHomePage()
-                .EnterNewUserNameAndPassword("TestUser", "TestPassword")
-                .ClickOnAddUser()
-                .AssertErrorMessage("")
+                .AddUser("TestUser", "TestPassword")
                 .AssertThatUserListContains("TestUser", "TestPassword");
         }
 
