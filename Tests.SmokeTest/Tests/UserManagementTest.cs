@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Tests.SmokeTest.Core;
 
 namespace Tests.SmokeTest.Tests
