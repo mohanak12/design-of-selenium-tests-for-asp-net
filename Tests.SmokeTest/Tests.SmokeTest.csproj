@@ -58,10 +58,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Configuration.cs" />
     <Compile Include="Core\INavigator.cs" />
     <Compile Include="Core\Navigator.cs" />
     <Compile Include="Core\PageBase.cs" />
-    <Compile Include="Core\SeleniumScope.cs" />
     <Compile Include="Flows\FlowBase.cs" />
     <Compile Include="Flows\HomePageFlow.cs" />
     <Compile Include="Flows\LoginPageFlows.cs" />
@@ -74,6 +74,7 @@
     <Compile Include="PageObjects\Controls\TextField.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\StorageAdminPage.cs" />
     <Compile Include="PageObjects\Templates\HomePage.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -84,10 +85,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginPage.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageObjects\Templates\StorageAdminPage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorageAdminPage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\HomeTest.cs" />
     <Compile Include="Tests\LoginTest.cs" />
     <Compile Include="Core\TestBase.cs" />
+    <Compile Include="SetUpSUT.cs" />
+    <Compile Include="Tests\SetUpTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -100,6 +108,10 @@
       <LastGenOutput>LoginPage.cs</LastGenOutput>
     </None>
     <None Include="PageObjects\Templates\PageObjectGeneratorByXPath.ttinclude" />
+    <None Include="PageObjects\Templates\StorageAdminPage.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StorageAdminPage.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />

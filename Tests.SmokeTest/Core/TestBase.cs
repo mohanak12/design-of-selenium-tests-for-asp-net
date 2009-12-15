@@ -11,7 +11,10 @@ namespace Tests.SmokeTest.Core
         [TestFixtureSetUp]
         public void Setup()
         {
-            _navigator = new Navigator();
+            var navigator = new Navigator();
+            navigator.Start(Configuration.SiteUrl);
+
+            _navigator = navigator;
             _startFlow = new StartFlow(_navigator);
         }
 

@@ -23,7 +23,7 @@ namespace SampleApplication.Core.Data
         public bool IsExists(string name, string password)
         {
             return GetAll()
-                .Select(r => r.Name == name && r.Password == password)
+                .Where(r => r.Name == name && r.Password == password)
                 .Any();
         }
 
