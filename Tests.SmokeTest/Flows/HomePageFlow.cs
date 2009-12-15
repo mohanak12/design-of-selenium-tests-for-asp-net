@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Tests.SmokeTest.Core;
 using Tests.SmokeTest.PageObjects;
 
@@ -34,8 +33,7 @@ namespace Tests.SmokeTest.Flows
 
         public HomePageFlow ClickOnAddUser()
         {
-            Navigator.ClickAndWaitForJQuery(
-                _home.ClickAddUser);
+            Navigator.ClickAndWaitForJQuery(_home.ClickAddUser);
 
             return this;
         }
@@ -61,7 +59,7 @@ namespace Tests.SmokeTest.Flows
 
         public HomePageFlow AssertErrorMessage(string message)
         {
-            Assert.That(_home.Error.GetText(), Is.EqualTo(message));
+            Assert.That(_home.Error.GetText(), Is.EqualTo(message), "Error message while insertion of user is wrong.");
 
             return this;
         }
