@@ -9,7 +9,7 @@ namespace Tests.SmokeTest.Core
         private StartFlow _startFlow;
 
         [TestFixtureSetUp]
-        public void Setup()
+        public void TestFixtureSetUp()
         {
             var navigator = new Navigator();
             navigator.Start(Configuration.SiteUrl);
@@ -19,7 +19,7 @@ namespace Tests.SmokeTest.Core
         }
 
         [TestFixtureTearDown]
-        public void TearDown()
+        public void TestFixtureTearDown()
         {
             _navigator.Dispose();
         }

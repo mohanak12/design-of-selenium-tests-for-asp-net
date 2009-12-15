@@ -7,7 +7,7 @@ namespace Tests.SmokeTest
     public class SetUpSUT
     {
         [SetUp]
-        void SetUp()
+        public void CleanUpStorage()
         {
             SetUpTest.CleanUp();
         }
