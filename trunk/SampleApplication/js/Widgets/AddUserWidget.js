@@ -10,6 +10,12 @@ function AddUserWidget()
     
 }
 
+AddUserWidget.prototype.SetError = function(msg)
+{
+    $("#lblError").html(msg);
+};
+
+
 AddUserWidget.prototype.FireAddUser = function(name, password)
 {
     if(this.AddUser !== undefined)

@@ -34,7 +34,7 @@
 			{
 				if(_name == null)
 				{
-					_name = new TextField(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[2]/td[2]/input[@id='txtName']");
+					_name = new TextField(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[3]/td[2]/input[@id='txtName']");
 				}
 				return _name;
 			}
@@ -46,28 +46,28 @@
 			{
 				if(_password == null)
 				{
-					_password = new TextField(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[3]/td[2]/input[@id='txtPassword']");
+					_password = new TextField(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[4]/td[2]/input[@id='txtPassword']");
 				}
 				return _password;
 			}
 		}
-		private TextField _marker = null;
-		public TextField Marker
+	public void ClickAddUser()
+	{
+		Selenium.Click(@"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[5]/td/input[@id='btnAddUser']");
+	}
+			private Label _error = null;
+		public Label Error
 		{
 			get
 			{
-				if(_marker == null)
+				if(_error == null)
 				{
-					_marker = new TextField(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/input[@id='txtMarker']");
+					_error = new Label(Selenium, @"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[2]/td/span[@id='lblError']");
 				}
-				return _marker;
+				return _error;
 			}
 		}
-	public void ClickAddUser()
-	{
-		Selenium.Click(@"xpath=/html/body/form[@id='form1']/div[3]/table/tbody/tr[4]/td/input[@id='btnAddUser']");
-	}
-					
+				
 						public int GetUserTableRowsCount()
 		{
 			return (int)Selenium.GetXpathCount("/html/body/form[@id='form1']/div[3]/div[@id='holderUsers']/table/tbody/tr");

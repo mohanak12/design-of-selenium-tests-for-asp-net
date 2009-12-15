@@ -31,11 +31,17 @@ HomeMediator.prototype.AddUser = function(name, password)
 {
     var me = this;
 
-    me.userListWidget.Empty();
-
-    this.services.AddUser(name, password, function (users) {
-          me.BindUsers()
-    });   
+    this.services.AddUser(name, password,
+        function (msg) {
+            if(msg.d.Success)
+            {
+                me.BindUsers();
+            }
+            else
+            {
+                 me.addUserWidget.SetError(msg.d.Message);              
+            }
+        });
 };
 
 HomeMediator.prototype.BindUsers = function()

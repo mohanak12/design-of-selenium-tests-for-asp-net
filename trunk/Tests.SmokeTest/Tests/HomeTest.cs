@@ -21,7 +21,18 @@ namespace Tests.SmokeTest.Tests
                 .LoginAndGoToHomePage()
                 .EnterNewUserNameAndPassword("TestUser", "TestPassword")
                 .ClickOnAddUser()
+                .AssertErrorMessage("")
                 .AssertThatUserListContains("TestUser", "TestPassword");
+        }
+
+        [Test]
+        public void AddDuplicateUserShouldFailTest()
+        {
+            Start
+                .LoginAndGoToHomePage()
+                .EnterNewUserNameAndPassword("admin", "Whatever")
+                .ClickOnAddUser()
+                .AssertErrorMessage("User with name 'admin' already exists");
         }
     }
 }
