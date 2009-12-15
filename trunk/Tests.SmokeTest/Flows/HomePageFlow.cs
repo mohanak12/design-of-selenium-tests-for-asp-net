@@ -34,9 +34,9 @@ namespace Tests.SmokeTest.Flows
 
         public HomePageFlow ClickOnAddUser()
         {
-            Navigator.ClickAndWaitForElement(
-                _home.ClickAddUser,
-                _home.Marker.GetSelector);
+            Navigator.ClickAndWaitForJQuery(
+                _home.ClickAddUser);
+
             return this;
         }
 

@@ -9,6 +9,7 @@ namespace Tests.SmokeTest.Core
 
         void ClickAndWaitForText(Action action, Func<string> control);
         void ClickAndWaitForElement(Action action, Func<string> control);
+        void ClickAndWaitForJQuery(Action action);
 
         void WaitForText(Func<string> selector);
         void WaitElementIsPresent(Func<string> selector);

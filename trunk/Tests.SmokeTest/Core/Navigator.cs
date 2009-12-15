@@ -54,6 +54,12 @@ namespace Tests.SmokeTest.Core
         {
             action();
             WaitElementIsPresent(getSelector);
+        } 
+        
+        public void ClickAndWaitForJQuery(Action action)
+        {
+            action();
+            WaitForJQuery();
         }
 
         private void WaitLoad<TT>(TT target) where TT : PageBase
@@ -69,6 +75,11 @@ namespace Tests.SmokeTest.Core
         public void WaitElementIsPresent(Func<string> selector)
         {
             WaitForCondition("selenium.isElementPresent('{0}');", selector());
+        } 
+        
+        public void WaitForJQuery()
+        {
+            _selenium.WaitForCondition("selenium.browserbot.getCurrentWindow().jQuery.active == 0;", Timeout);
         }
 
         private void WaitForCondition(string condition, string selector)
