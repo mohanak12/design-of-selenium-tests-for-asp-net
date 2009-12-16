@@ -8,7 +8,7 @@ namespace SampleApplication.Core
     {
         public string Xml
         {
-            get { return Path.Combine(HttpContext.Current.Server.MapPath("/"), ConfigurationManager.AppSettings["XmlFile"]); }
+            get { return Path.Combine(HttpContext.Current.Server.MapPath("~/"), ConfigurationManager.AppSettings["XmlFile"]); }
         }
     }
 }
