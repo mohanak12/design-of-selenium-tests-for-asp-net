@@ -24,5 +24,10 @@ namespace Tests.SmokeTest.Core
         {
             get { return Int32.Parse(ConfigurationManager.AppSettings["SeleniumPort"]); }
         }
+
+        public static string ScriptsPath
+        {
+            get { return ConfigurationManager.AppSettings["ScriptsPath"]; }
+        }
     }
 }

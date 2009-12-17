@@ -1,0 +1,2 @@
+﻿LoginAndGoToHomePage
+AssertUserName admin

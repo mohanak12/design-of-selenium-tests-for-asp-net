@@ -95,6 +95,7 @@
     <Compile Include="Tests\LoginTest.cs" />
     <Compile Include="Core\TestBase.cs" />
     <Compile Include="SetUpSUT.cs" />
+    <Compile Include="Tests\ScriptTest.cs" />
     <Compile Include="Tests\UserManagementTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\CheckNameOnLoginPage.txt" />
+    <Content Include="Scripts\LoginSuccessWithCorrectPassword.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
