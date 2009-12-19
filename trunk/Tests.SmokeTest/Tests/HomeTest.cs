@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using Tests.SmokeTest.Core;
+﻿using Tests.SmokeTest.Core;
+using MbUnit.Framework;
 
 namespace Tests.SmokeTest.Tests
 {
@@ -9,9 +9,12 @@ namespace Tests.SmokeTest.Tests
         [Test]
         public void CheckCurrentUserName()
         {
-            Start
-                .LoginAndGoToHomePage()
-                .AssertUserName("admin");
+            using (var start = GetStart())
+            {
+                start
+                    .LoginAndGoToHomePage()
+                    .AssertUserName("admin");
+            }
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Tests.SmokeTest.Core;
+﻿using System;
+using Tests.SmokeTest.Core;
 using Tests.SmokeTest.PageObjects;
 
 namespace Tests.SmokeTest.Flows
 {
-    public class StartFlow : FlowBase
+    public class StartFlow : FlowBase, IDisposable
     {
         public StartFlow(INavigator navigator)
             : base(navigator)
@@ -21,6 +22,11 @@ namespace Tests.SmokeTest.Flows
             return GoToLoginPage()
                 .EnterValidCredentials()
                 .Login();
+        }
+
+        public void Dispose()
+        {
+            Navigator.Dispose();
         }
     }
 }

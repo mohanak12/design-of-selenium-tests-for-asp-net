@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using MbUnit.Framework;
 using Tests.SmokeTest.Core;
 using Tests.SmokeTest.PageObjects;
 
@@ -19,7 +18,7 @@ namespace Tests.SmokeTest.Flows
         {
             Navigator.WaitForText(_home.UserName.GetSelector);
 
-            Assert.That(_home.UserName.GetText(), Is.EqualTo(userName));
+            Assert.AreEqual(userName, _home.UserName.GetText());
 
             return this;
         }
@@ -70,14 +69,14 @@ namespace Tests.SmokeTest.Flows
                 }
             }
 
-            Assert.That(isExists, Is.EqualTo(true), string.Format("User with name '{0}' and password '{1}' doesn't exists in user list table", name, password));
+            Assert.IsTrue(isExists, string.Format("User with name '{0}' and password '{1}' doesn't exists in user list table", name, password));
 
             return this;
         }
 
         public HomePageFlow AssertErrorMessage(string message)
         {
-            Assert.That(_home.Error.GetText(), Is.EqualTo(message), "Error message while insertion of user is wrong.");
+            Assert.AreEqual(message, _home.Error.GetText(), "Error message while insertion of user is wrong.");
 
             return this;
         }

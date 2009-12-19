@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using MbUnit.Framework;
 using Tests.SmokeTest.Core;
 
 namespace Tests.SmokeTest.Tests
@@ -9,20 +9,26 @@ namespace Tests.SmokeTest.Tests
         [Test]
         public void LoginSuccessWithCorrectPassword()
         {
-            Start
-                .GoToLoginPage()
-                .EnterCredentials("admin", "god")
-                .Login();
+            using (var start = GetStart())
+            {
+                start
+                    .GoToLoginPage()
+                    .EnterCredentials("admin", "god")
+                    .Login();
+            }
         }
 
         [Test]
         public void LoginWrongWithWrongPassword()
         {
-            Start
-                .GoToLoginPage()
-                .EnterCredentials("admin", "incorrectPwd")
-                .LoginShouldFail()
-                .AssertMessage("Username and password do not match.");
+            using (var start = GetStart())
+            {
+                start
+                    .GoToLoginPage()
+                    .EnterCredentials("admin", "incorrectPwd")
+                    .LoginShouldFail()
+                    .AssertMessage("Username and password do not match.");
+            }
         }
     }
 }

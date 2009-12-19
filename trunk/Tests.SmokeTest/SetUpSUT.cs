@@ -1,13 +1,13 @@
-﻿using NUnit.Framework;
+﻿using MbUnit.Framework;
 using Tests.SmokeTest.Core;
 using Tests.SmokeTest.PageObjects;
 
 namespace Tests.SmokeTest
 {
-    [SetUpFixture]
+    [AssemblyFixture]
     public class SetUpSUT
     {
-        [SetUp]
+        [FixtureSetUp]
         public void CleanUpStorage()
         {
             CleanUp();
