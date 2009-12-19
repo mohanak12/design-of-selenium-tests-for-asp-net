@@ -14,7 +14,7 @@ using MbUnit.Framework;
 [assembly: AssemblyCopyright("Copyright © sLMoloch 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: DegreeOfParallelism(2)]
+[assembly: DegreeOfParallelism(10)]
 [assembly: Parallelizable(TestScope.All)]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

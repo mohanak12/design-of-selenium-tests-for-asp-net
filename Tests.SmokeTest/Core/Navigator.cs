@@ -114,7 +114,7 @@ namespace Tests.SmokeTest.Core
             WaitLoad(target);
             if (target.Selenium.GetBodyText().Contains("Server Error in "))
             {
-                Assert.Fail(String.Format("Server error while navigating\r\n\r\n {0}.", target.Selenium.GetBodyText()));
+                Assert.Fail("Server error while navigating\r\n\r\n {0}.", target.Selenium.GetBodyText());
             }
 
             AssertCorrectPageLoaded(target);
