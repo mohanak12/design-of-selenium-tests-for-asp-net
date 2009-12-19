@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using NUnit.Framework;
+using MbUnit.Framework;
 using Tests.SmokeTest.Core;
 
 namespace Tests.SmokeTest.Tests
@@ -11,44 +10,58 @@ namespace Tests.SmokeTest.Tests
     [TestFixture]
     public class ScriptTest : TestBase
     {
-        [Test, TestCaseSource("TestCases")]
-        public void DivideTest(CommandSet commandSet)
+
+        [DynamicTestFactory]
+        public IEnumerable<Test> CreateDynamicTests()
         {
-            object currentFlow = Start;
-
-            foreach (var command in commandSet.Commands)
+            foreach (var commandSet in TestCases)
             {
-
-                var method = currentFlow.GetType().GetMethod(command.Name);
-
-                try
+                yield return new TestCase("Test: " + commandSet.Name, () =>
                 {
-                    var parameters = command.Parameters.ToArray();
+                    RunCommandSet(commandSet);
+                });
+            }
+        }
+       
 
-                    if(parameters.Length == 0)
+        private void RunCommandSet(CommandSet commandSet)
+        {
+            using (var start = GetStart())
+            {
+                object currentFlow = start;
+
+                foreach (var command in commandSet.Commands)
+                {
+
+                    var method = currentFlow.GetType().GetMethod(command.Name);
+
+                    try
                     {
-                        parameters = null;
+                        var parameters = command.Parameters.ToArray();
+
+                        if (parameters.Length == 0)
+                        {
+                            parameters = null;
+                        }
+
+                        currentFlow = method.Invoke(currentFlow, parameters);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(string.Format("Error while executing command {0}", command.Name), ex);
                     }
 
-                    currentFlow = method.Invoke(currentFlow, parameters);
                 }
-                catch (Exception ex)
-                {
-
-                    throw new Exception(string.Format("Error while executing command {0}", command.Name), ex);
-                }
-                
             }
         }
 
-        public IEnumerable TestCases
+        public IList<CommandSet> TestCases
         {
             get
             {
                 return (from fileName in Directory.GetFiles(Configuration.ScriptsPath)
                         let contents = File.ReadAllText(fileName)
-                        select new object[] {GetCommand(fileName, contents)})
-                        .Cast<object>()
+                        select GetCommand(fileName, contents))
                         .ToList();
             }
         }

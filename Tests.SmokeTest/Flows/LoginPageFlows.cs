@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using MbUnit.Framework;
 using Tests.SmokeTest.Core;
 using Tests.SmokeTest.PageObjects;
 
@@ -44,7 +43,7 @@ namespace Tests.SmokeTest.Flows
 
         public void AssertMessage(string message)
         {
-            Assert.That(_login.Message.GetText(), Is.EqualTo(message));
+            Assert.AreEqual(message, _login.Message.GetText());
         }
     }
 }

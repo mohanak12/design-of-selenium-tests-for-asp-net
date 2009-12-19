@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using MbUnit.Framework;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -8,11 +9,13 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Tests.SmokeTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("EPAM Systems")]
+[assembly: AssemblyCompany("sLMoloch")]
 [assembly: AssemblyProduct("Tests.SmokeTest")]
-[assembly: AssemblyCopyright("Copyright © EPAM Systems 2009")]
+[assembly: AssemblyCopyright("Copyright © sLMoloch 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: DegreeOfParallelism(2)]
+[assembly: Parallelizable(TestScope.All)]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
