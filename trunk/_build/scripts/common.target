@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="${project.name}" default="main">
+  <target name="clean">
+    <delete>
+      <fileset>
+        <include name="${reports.dir}/*.*" />
+        <exclude name="${reports.dir}/buildlog.xml" />
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="svn.cleanup">
+    <exec program="cmd.exe" verbose="true" workingdir="${src.dir}">
+      <arg value="/c" />
+      <arg value="${svn.file}" />
+      <arg value="cleanup" />
+    </exec>
+  </target>
+
+  <target name="svn.update">
+    <exec program="cmd.exe" verbose="true" workingdir="${src.dir}">
+      <arg value="/c" />
+      <arg value="${svn.file}" />
+      <arg value="update" />
+    </exec>
+  </target>
+  
+  <target name="msbuild.build">
+    <property name="failed.message" value="Build ${current.solution} with Configuration=${configuration} by msbuild.exe" />
+    <exec program="${msbuild.file}" verbose="true" workingdir="${src.dir}">
+      <arg value="/nologo" />
+      <arg value="/noconsolelogger" />
+      <arg value="${current.solution}" />
+      <arg value="/t:${specified_run_build}" />
+      <arg value="/p:Configuration=${configuration}" />
+      <arg value="/logger:Kobush.Build.Logging.XmlLogger,${kobush.dll};${reports.dir}/msbuild.report.${current.solution}.${configuration}.xml" />
+    </exec>
+  </target>
+
+  <target name="nunit">
+    <property name="failed.message" value="Nunit" />
+    <exec program="${nunit.file}" failonerror="true" verbose="true" workingdir="${src.dir}">
+      <arg value="${nunit.config.file}" />
+      <arg value="/xml:${reports.dir}/nunit_report.xml" />
+    </exec>
+  </target>
+</project>

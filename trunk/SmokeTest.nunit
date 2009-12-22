@@ -1,7 +1,0 @@
-﻿<NUnitProject>
-  <Settings activeconfig="Debug" />
-  <Config name="Debug" configfile="Tests.SmokeTest\app.config" binpathtype="Auto">
-    <assembly path="Tests.SmokeTest\bin\Debug\Tests.SmokeTest.dll" />
-  </Config>
-  <Config name="Release" binpathtype="Auto" />
-</NUnitProject>

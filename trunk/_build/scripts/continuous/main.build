@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="${CCNetProject}" default="main" basedir=".">
+  <include buildfile="specific.properties" />
+  <include buildfile="../common.properties" />
+  <include buildfile="../common.target" />
+
+  <target name="main">
+    <call target="clean" />
+    <call target="svn.cleanup" />
+    <call target="svn.update" />
+ 
+    <property name="current.solution" value="${sample.solution}" />
+    <call target="msbuild.build" />
+  </target>
+</project>
