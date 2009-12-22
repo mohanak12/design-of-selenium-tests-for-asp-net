@@ -24,9 +24,23 @@
       <arg value="update" />
     </exec>
   </target>
+
+  <target name="start.grid">
+    <exec program="${psexec.file}" verbose="true" failonerror="false">
+      <arg value="-i" />
+      <arg value="0" />
+      <arg value="-u" />
+      <arg value="Moloch" />
+      <arg value="-p" />
+      <arg value="1" />
+      <arg value="-d" />
+      <arg value="java" />
+      <arg value="-jar" />
+      <arg value="${selenium.server.file}" />
+    </exec>
+  </target>
   
   <target name="msbuild.build">
-    <property name="failed.message" value="Build ${current.solution} with Configuration=${configuration} by msbuild.exe" />
     <exec program="${msbuild.file}" verbose="true" workingdir="${src.dir}">
       <arg value="/nologo" />
       <arg value="/noconsolelogger" />
@@ -37,11 +51,11 @@
     </exec>
   </target>
 
-  <target name="nunit">
-    <property name="failed.message" value="Nunit" />
-    <exec program="${nunit.file}" failonerror="true" verbose="true" workingdir="${src.dir}">
-      <arg value="${nunit.config.file}" />
-      <arg value="/xml:${reports.dir}/nunit_report.xml" />
+  <target name="start.gallio">
+    <exec program="${gallio.file}" failonerror="true" verbose="true" workingdir="${src.dir}">
+      <arg value="${mbunit.project.file}" />
+      <arg value="/rd:${reports.dir}" />
+      <arg value="/rt:xml" />
     </exec>
   </target>
 </project>
