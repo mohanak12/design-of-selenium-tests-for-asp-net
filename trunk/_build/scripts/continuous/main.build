@@ -11,5 +11,8 @@
  
     <property name="current.solution" value="${sample.solution}" />
     <call target="msbuild.build" />
+
+    <call target="start.grid"/>
+    <call target="start.gallio"/>
   </target>
 </project>
