@@ -28,11 +28,7 @@
   <target name="start.selenium.grid.hub">
     <exec program="${psexec.file}" verbose="true" failonerror="false">
       <arg value="-i" />
-      <arg value="0" />
-      <arg value="-u" />
-      <arg value="Moloch" />
-      <arg value="-p" />
-      <arg value="1" />
+      <arg value="0" />     
       <arg value="-d" />
       <arg value="java" />
       <arg value="-jar" />
@@ -45,14 +41,16 @@
       <arg value="-i" />
       <arg value="0" />
       <arg value="-u" />
-      <arg value="Moloch" />
+      <arg value="${rc.login}" />
       <arg value="-p" />
-      <arg value="1" />
+      <arg value="${rc.password}" />
       <arg value="-d" />
       <arg value="java" />
       <arg value="-classpath" />
       <arg value="${selenium.server.file};${selenium.grid.rc.file}" />
       <arg value="com.thoughtworks.selenium.grid.remotecontrol.SelfRegisteringRemoteControlLauncher" />
+      <arg value="-port" />
+      <arg value="${rc.port}" />
     </exec>
   </target>
 
@@ -61,9 +59,9 @@
       <arg value="-i" />
       <arg value="0" />
       <arg value="-u" />
-      <arg value="Moloch" />
+      <arg value="${server.admin}" />
       <arg value="-p" />
-      <arg value="1" />
+      <arg value="${server.password}" />
       <arg value="-d" />
       <arg value="java" />
       <arg value="-jar" />
