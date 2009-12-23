@@ -1,5 +1,5 @@
 <users>
   <user name="admin" password="god" />
-  <user name="TestUser" password="TestPassword" />
   <user name="TestUserForLogin" password="TestPwdForLogin" />
+  <user name="TestUser" password="TestPassword" />
 </users>
