@@ -25,7 +25,38 @@
     </exec>
   </target>
 
-  <target name="start.grid">
+  <target name="start.selenium.grid.hub">
+    <exec program="${psexec.file}" verbose="true" failonerror="false">
+      <arg value="-i" />
+      <arg value="0" />
+      <arg value="-u" />
+      <arg value="Moloch" />
+      <arg value="-p" />
+      <arg value="1" />
+      <arg value="-d" />
+      <arg value="java" />
+      <arg value="-jar" />
+      <arg value="${selenium.grid.hub.file}" />
+    </exec>
+  </target>
+
+  <target name="start.selenium.grid.rc">
+    <exec program="${psexec.file}" verbose="true" failonerror="false">
+      <arg value="-i" />
+      <arg value="0" />
+      <arg value="-u" />
+      <arg value="Moloch" />
+      <arg value="-p" />
+      <arg value="1" />
+      <arg value="-d" />
+      <arg value="java" />
+      <arg value="-classpath" />
+      <arg value="${selenium.grid.rc.file};${selenium.server.file}" />
+      <arg value="com.thoughtworks.selenium.grid.remotecontrol.SelfRegisteringRemoteControlLauncher" />
+    </exec>
+  </target>
+
+  <target name="start.selenium.server">
     <exec program="${psexec.file}" verbose="true" failonerror="false">
       <arg value="-i" />
       <arg value="0" />
@@ -39,6 +70,15 @@
       <arg value="${selenium.server.file}" />
     </exec>
   </target>
+
+  <target name="kill.java">
+    <exec program="taskkill" verbose="true">
+      <arg value="/fi" />
+      <arg value="imagename eq java.exe" />
+      <arg value="/f" />
+    </exec>
+  </target>  
+  
   
   <target name="msbuild.build">
     <exec program="${msbuild.file}" verbose="true" workingdir="${src.dir}">
