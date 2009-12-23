@@ -5,16 +5,20 @@
   <include buildfile="../common.target" />
 
   <target name="main">
-<!--    <call target="clean" />-->
-<!--    <call target="svn.cleanup" />-->
-<!--    <call target="svn.update" />-->
-<!-- -->
-<!--    <property name="current.solution" value="${sample.solution}" />-->
-<!--    <call target="msbuild.build" />-->
+    <call target="clean" />
+    <!-- <call target="svn.cleanup" />
+    <call target="svn.update" /> -->
 
-   <call target="start.selenium.grid.hub"/>
-    <call target="start.selenium.grid.rc"/>
-<!--    <call target="start.gallio"/>-->
-<!--    <call target="kill.java"/>-->
+    <property name="current.solution" value="${sample.solution}" />
+    <call target="msbuild.build" />
+
+    <call target="start.selenium.grid.hub"/>
+	
+	<foreach item="Line" in="${grid.slaves.config}" delim="," property="rc.host,rc.login,rc.password,rc.port">
+		<call target="start.selenium.grid.rc"/>
+	</foreach>
+
+    <call target="start.gallio"/>
+    <call target="kill.java"/>
   </target>
 </project>
