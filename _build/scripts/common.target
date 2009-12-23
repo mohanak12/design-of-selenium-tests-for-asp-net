@@ -51,7 +51,7 @@
       <arg value="-d" />
       <arg value="java" />
       <arg value="-classpath" />
-      <arg value="${selenium.grid.rc.file};${selenium.server.file}" />
+      <arg value="${selenium.server.file};${selenium.grid.rc.file}" />
       <arg value="com.thoughtworks.selenium.grid.remotecontrol.SelfRegisteringRemoteControlLauncher" />
     </exec>
   </target>
