@@ -1,3 +1,2 @@
-localhost,VantageUser,1,5555
-localhost,VantageUser,1,5554
-localhost,VantageUser,1,5553
+comp1,uat,selenium1~,5555,d:\work\builds\tools\selenium
+comp2,gui,`123QWERasdf,5552,d:\tools\selenium_grid
