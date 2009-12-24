@@ -24,6 +24,24 @@
       <arg value="update" />
     </exec>
   </target>
+  
+  <target name="adust.tests.config">
+	<xmlpoke file="${tests.config.file}" 
+			xpath="/configuration/appSettings/add[@key='SiteUrl']/@value" 
+			value="${siteUrl}" />
+			
+	<xmlpoke file="${tests.config.file}" 
+			xpath="/configuration/appSettings/add[@key='StorageAdminSiteUrl']/@value" 
+			value="${storageAdminUrl}" />
+  </target>
+  
+  <target name="kill.all.selenium">
+		<foreach item="Line" in="${grid.slaves.config}" delim="," property="rc.host,rc.login,rc.password,rc.port,rc.selenium.folder">
+			<call target="kill.selenium"/>
+		</foreach>
+
+		<call target="kill.java"/>
+  </target>
 
   <target name="start.selenium.grid.hub">
     <exec program="${psexec.file}" verbose="true" failonerror="false">
@@ -38,7 +56,8 @@
 
   <target name="start.selenium.grid.rc">
     <exec program="${psexec.file}" verbose="true" failonerror="false">
-      <arg value="-i" />
+      <arg value="\\${rc.host}" />
+	  <arg value="-i" />
       <arg value="0" />
       <arg value="-u" />
       <arg value="${rc.login}" />
@@ -47,10 +66,14 @@
       <arg value="-d" />
       <arg value="java" />
       <arg value="-classpath" />
-      <arg value="${selenium.server.file};${selenium.grid.rc.file}" />
+      <arg value="${rc.selenium.folder}\${selenium.server.file};${rc.selenium.folder}\${selenium.grid.rc.file}" />
       <arg value="com.thoughtworks.selenium.grid.remotecontrol.SelfRegisteringRemoteControlLauncher" />
+      <arg value="-host" />
+      <arg value="${rc.host}" />
       <arg value="-port" />
       <arg value="${rc.port}" />
+	  <arg value="-hubURL" />
+      <arg value="${rc.hubURL}" />
     </exec>
   </target>
 
@@ -66,6 +89,22 @@
       <arg value="java" />
       <arg value="-jar" />
       <arg value="${selenium.server.file}" />
+    </exec>
+  </target>
+  
+  <target name="kill.selenium">
+    <exec program="${psexec.file}" verbose="true" failonerror="false">
+      <arg value="\\${rc.host}" />
+	  <arg value="-i" />
+      <arg value="0" />
+      <arg value="-u" />
+      <arg value="${rc.login}" />
+      <arg value="-p" />
+      <arg value="${rc.password}" />
+      <arg value="taskkill" />
+      <arg value="/fi" />
+      <arg value="imagename eq java.exe" />
+	  <arg value="/f" />
     </exec>
   </target>
 

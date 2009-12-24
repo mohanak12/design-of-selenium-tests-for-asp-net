@@ -3,6 +3,7 @@
   <testPackage shadowCopy="false" debug="false">
     <files>
       <file>Tests.SmokeTest\bin\Debug\Tests.SmokeTest.dll</file>
+      <file>Tests.SmokeTest\App.config</file>
     </files>
     <hintDirectories />
     <excludedFrameworkIds />
@@ -10,7 +11,7 @@
   </testPackage>
   <testFilters>
     <testFilter filterName="LastRun" filterExpr="" />
-    <testFilter filterName="AutoSave" filterExpr="" />
+    <testFilter filterName="AutoSave" filterExpr="Id: 6ea35f6390bbd2ff" />
   </testFilters>
   <extensionSpecifications />
   <reportDirectory>C:\Documents and Settings\Moloch\Application Data\Gallio\Icarus\Reports</reportDirectory>
