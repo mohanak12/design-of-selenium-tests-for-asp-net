@@ -19,6 +19,7 @@ namespace Tests.SmokeTest.Core
             _selenium.Open(Path.Combine(_siteUrl, target.PageUrl));
 
             WaitLoad(target);
+            AssertErrorPage(target);
             AssertCorrectPageLoaded(target);
             return target;
         }
@@ -112,14 +113,18 @@ namespace Tests.SmokeTest.Core
             }
 
             WaitLoad(target);
+            AssertErrorPage(target);
+            AssertCorrectPageLoaded(target);
+
+            return target;
+        }
+
+        private static void AssertErrorPage<TT>(TT target) where TT : PageBase, new()
+        {
             if (target.Selenium.GetBodyText().Contains("Server Error in "))
             {
                 Assert.Fail("Server error while navigating\r\n\r\n {0}.", target.Selenium.GetBodyText());
             }
-
-            AssertCorrectPageLoaded(target);
-
-            return target;
         }
 
         private void InitPage<TT>(TT target) where TT : PageBase
