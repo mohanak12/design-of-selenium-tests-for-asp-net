@@ -63,6 +63,7 @@
     <Content Include="js\Ignitions\HomeIgnition.js" />
     <Content Include="js\Services\Services.js" />
     <Content Include="js\Widgets\AddUserWidget.js" />
+    <Content Include="js\Widgets\AjaxErrorWidget.js" />
     <Content Include="js\Widgets\UserListWidget.js" />
     <Content Include="js\Widgets\UserNameWidget.js" />
     <Content Include="Login.aspx" />

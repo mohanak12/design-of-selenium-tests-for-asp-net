@@ -13,5 +13,6 @@ namespace Tests.SmokeTest.Core
 
         void WaitForText(Func<string> selector);
         void WaitElementIsPresent(Func<string> selector);
+        void WaitForJQuery();
     }
 }

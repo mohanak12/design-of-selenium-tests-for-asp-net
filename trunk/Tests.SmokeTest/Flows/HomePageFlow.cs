@@ -16,11 +16,17 @@ namespace Tests.SmokeTest.Flows
 
         public HomePageFlow AssertUserName(string userName)
         {
-            Navigator.WaitForText(_home.UserName.GetSelector);
+            Navigator.WaitForJQuery();
+            AsertNoAjaxErrors();
 
             Assert.AreEqual(userName, _home.UserName.GetText());
 
             return this;
+        }
+
+        private void AsertNoAjaxErrors()
+        {
+            Assert.AreEqual(string.Empty, _home.AjaxErrorMessage.GetText(), "Ajax Error:" + _home.AjaxErrorMessage.GetText());
         }
 
         public LoginPageFlow Logout()
@@ -51,6 +57,7 @@ namespace Tests.SmokeTest.Flows
         public HomePageFlow ClickOnAddUser()
         {
             Navigator.ClickAndWaitForJQuery(_home.ClickAddUser);
+            AsertNoAjaxErrors();
 
             return this;
         }

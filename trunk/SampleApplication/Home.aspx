@@ -19,6 +19,7 @@
     <script src="js/Widgets/UserNameWidget.js" type="text/javascript"></script>
     <script src="js/Widgets/UserListWidget.js" type="text/javascript"></script>
     <script src="js/Widgets/AddUserWidget.js" type="text/javascript"></script>
+    <script src="js/Widgets/AjaxErrorWidget.js" type="text/javascript"></script>
     
     <script type="text/javascript">
         $(function()
@@ -74,6 +75,10 @@
         <br/>
         List Of Users:
         <div id="holderUsers"></div>
+    </div>
+    
+    <div style="position:absolute;left:300px;top:10px;border:solid 1px red">
+        <span id="lblAjaxErrorMessage"></span>
     </div>
     </form>
 </body>
