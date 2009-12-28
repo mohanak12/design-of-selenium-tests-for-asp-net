@@ -2,7 +2,8 @@ function HomeMediator(
         services,
         userNameWidget,
         addUserWidget,
-        userListWidget)
+        userListWidget,
+        ajaxErrorWidget)
 {
     var me = this;
 
@@ -11,6 +12,7 @@ function HomeMediator(
     this.userNameWidget = userNameWidget;
     this.addUserWidget = addUserWidget;
     this.userListWidget = userListWidget;
+    this.ajaxErrorWidget = ajaxErrorWidget;
 
     //events
     me.addUserWidget.AddUser = function(name, password) { me.AddUser(name, password); };
@@ -21,7 +23,10 @@ HomeMediator.prototype.DocumentLoaded = function()
     var me = this;
 
     this.services.GetCurrentUser(function (msg) {
-          me.userNameWidget.SetUserName(msg.d);
+            me.userNameWidget.SetUserName(msg.d);
+    },
+    function(msg) {
+            me.ajaxErrorWidget.SetError(msg.Message);
     });
 
     me.BindUsers();
@@ -41,6 +46,9 @@ HomeMediator.prototype.AddUser = function(name, password)
             {
                  me.addUserWidget.SetError(msg.d.Message);              
             }
+        },
+         function(msg) {
+            me.ajaxErrorWidget.SetError(msg.Message);
         });
 };
 
@@ -50,5 +58,8 @@ HomeMediator.prototype.BindUsers = function()
     
     this.services.GetAllUsers(function (users) {
           me.userListWidget.Render(users.d);
-    });    
+    },
+    function(msg) {
+            me.ajaxErrorWidget.SetError(msg.Message);
+    });
 };

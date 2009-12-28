@@ -67,6 +67,18 @@
 				return _error;
 			}
 		}
+		private Label _ajaxErrorMessage = null;
+		public Label AjaxErrorMessage
+		{
+			get
+			{
+				if(_ajaxErrorMessage == null)
+				{
+					_ajaxErrorMessage = new Label(Selenium, @"xpath=/html/body/form[@id='form1']/div[4]/span[@id='lblAjaxErrorMessage']");
+				}
+				return _ajaxErrorMessage;
+			}
+		}
 				
 						public int GetUserTableRowsCount()
 		{

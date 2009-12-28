@@ -7,7 +7,7 @@ namespace Tests.SmokeTest.Core
 {
     public class Navigator : INavigator
     {
-        private const string Timeout = "120000";
+        private const string Timeout = "20000";
         private ISelenium _selenium;
         private string _siteUrl;
 
