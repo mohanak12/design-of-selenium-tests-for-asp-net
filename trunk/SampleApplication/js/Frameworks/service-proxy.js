@@ -18,7 +18,7 @@
                 type: "POST",
                 processData: false,
                 contentType: "application/json",
-                timeout: 30000,
+                timeout: 10000,
                 dataType: "text",  // not "json" we'll parse
                 success:
                     function(res) {
