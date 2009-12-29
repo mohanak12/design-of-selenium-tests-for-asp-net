@@ -6,8 +6,8 @@
 
   <target name="main">
     <call target="clean" />
-    <!-- <call target="svn.cleanup" />
-    <call target="svn.update" /> -->
+    <call target="svn.cleanup" />
+    <call target="svn.update" /> 
 	
 	<call target="adust.tests.config" /> 
 
