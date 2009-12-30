@@ -17,7 +17,6 @@ namespace Tests.SmokeTest.Flows
         public HomePageFlow AssertUserName(string userName)
         {
             Navigator.WaitForJQuery();
-            Navigator.WaitForText(_home.UserName.GetSelector);
             AsertNoAjaxErrors();
 
             Assert.AreEqual(userName, _home.UserName.GetText());
