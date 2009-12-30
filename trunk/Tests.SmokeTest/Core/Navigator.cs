@@ -121,9 +121,15 @@ namespace Tests.SmokeTest.Core
 
         private static void AssertErrorPage<TT>(TT target) where TT : PageBase, new()
         {
-            if (target.Selenium.GetBodyText().Contains("Server Error in "))
+            var bodyText = target.Selenium.GetBodyText();
+            if (bodyText.Contains("Server Error in "))
             {
-                Assert.Fail("Server error while navigating\r\n\r\n {0}.", target.Selenium.GetBodyText());
+                Assert.Fail("Server error while navigating\r\n\r\n {0}.", bodyText);
+            }
+
+            if (bodyText.Contains("Internet Information Services") && bodyText.Contains("Microsoft Support"))
+            {
+                Assert.Fail("IIS error while navigating\r\n\r\n {0}.", bodyText);
             }
         }
 
