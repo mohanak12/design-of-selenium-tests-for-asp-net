@@ -14,8 +14,11 @@
     <property name="current.solution" value="${sample.solution}" />
     <call target="msbuild.build" />
 
-	<call target="kill.all.selenium"/>
+	<gmttimestamp property='today' pattern="yyMMdd"/>
+	<gmttimestamp property='start.selenium.timestamp' pattern="HH:mm:ss"/>
 	
+	<!-- Selenium tests-->
+	<call target="kill.all.selenium"/>	
     <call target="start.selenium.grid.hub"/>
 	
 	<foreach item="Line" in="${grid.slaves.config}" delim="," property="rc.host,rc.login,rc.password,rc.port,rc.selenium.folder">
@@ -28,7 +31,11 @@
 		</try>
 		<finally>
 			<call target="kill.all.selenium"/>
+			<gmttimestamp property='end.selenium.timestamp' pattern="HH:mm:ss"/>
+			<call target="extract.iis.log"/>
 		</finally>
 	</trycatch>
+	<!-- end Selenium tests-->
+	
   </target>
 </project>

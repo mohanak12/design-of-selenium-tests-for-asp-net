@@ -8,7 +8,7 @@
       </fileset>
     </delete>
   </target>
-
+        
   <target name="svn.cleanup">
     <exec program="cmd.exe" verbose="true" workingdir="${src.dir}">
       <arg value="/c" />
@@ -116,7 +116,6 @@
     </exec>
   </target>  
   
-  
   <target name="msbuild.build">
     <exec program="${msbuild.file}" verbose="true" workingdir="${src.dir}">
       <arg value="/nologo" />
@@ -135,4 +134,48 @@
       <arg value="/rt:xml" />
     </exec>
   </target>
+  
+  <target name="extract.iis.log">
+	<exec program="${logparser.file}" failonerror="true" verbose="true">
+		<arg value="file:${logs.processing.sql.file}?logdir=${iis.logs.dir}+today=${today}+starttime=${start.selenium.timestamp}+endtime=${end.selenium.timestamp}+reportsdir=${reports.dir}"/>
+		<arg value="-e"/>
+		<arg value="a"/>
+	</exec>
+  </target>
+  
+  <script language="C#" prefix="test" >
+	<code>
+	  <![CDATA[
+		[TaskName("gmttimestamp")]
+		public class gmttimestamp : Task
+		{
+			private string _pattern;
+			private string _property;
+
+			[TaskAttribute("pattern", Required = true)]
+			public string Pattern
+			{
+				get { return _pattern; }
+				set { _pattern = value; }
+			}
+
+			[TaskAttribute("property", Required = true)]
+			public string Property
+			{
+				get { return _property; }
+				set { _property = value; }
+			}
+
+			protected override void ExecuteTask()
+			{
+				string gmtTime = DateTime.UtcNow.ToString(_pattern);
+				Properties.Add(_property, gmtTime);
+
+				Log(Level.Info, "[gmttimestamp] :" + gmtTime);
+			}
+		}
+	  ]]>
+	</code>
+	</script>
+	
 </project>
