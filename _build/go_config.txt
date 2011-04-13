@@ -1,0 +1,80 @@
+
+PIPELINES
+AGENTS
+NOTIFICATIONS
+ADMIN
+HELP
+Errors: 1
+Administration
+Pipelines Configuration
+Source XML
+Server Configuration
+User Summary
+OAuth Clients
+EDIT
+Configuration File Path:
+C:\Pr­ogram­ File­s (x8­6)\Go­ Serv­er\co­nfig\­cruis­e-con­fig.x­ml
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="24">
+  <server artifactsdir="artifacts">
+  </server>
+  <pipelines group="Test">
+    <pipeline name="TestsDesign">
+      <materials>
+        <svn url="http://design-of-selenium-tests-for-asp-net.googlecode.com/svn/trunk" username="design-of-selenium-tests-for-asp-net-read-only" password="" dest="Sources" />
+      </materials>
+      <stage name="CheckAndCreateBuild" cleanWorkingDir="true">
+        <jobs>
+          <job name="Build">
+            <tasks>
+              <exec command="C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe" args="SampleApplicationAndTests.sln /t:Rebuild /fl /noconsolelogger" workingdir="Sources" />
+              <exec command="C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe" args="/v myapp -p SampleApplication PublishedSampleApplication" workingdir="Sources" />
+              <exec command="C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet_compiler.exe" args="/v myapp -p StorageAdmin PublishedStorageAdmin" workingdir="Sources" />
+            </tasks>
+            <artifacts>
+              <artifact src="Sources\msbuild.log" dest="build-log" />
+              <artifact src="Sources\PublishedSampleApplication\**\*" dest="Package\SampleApplication" />
+              <artifact src="Sources\PublishedStorageAdmin\**\*" dest="Package\StorageAdmin" />
+            </artifacts>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="AcceptanceTesting" fetchMaterials="false" cleanWorkingDir="true">
+        <jobs>
+          <job name="DeployAndTest">
+            <tasks>
+              <fetchartifact stage="CheckAndCreateBuild" job="Build" srcdir="Package" />
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+    <pipeline name="TestPipeline">
+      <materials>
+        <hg url="http://localhost:8000" />
+      </materials>
+      <stage name="buidSources">
+        <jobs>
+          <job name="defaultJob" />
+        </jobs>
+      </stage>
+      <stage name="checkSources">
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <nant buildfile="default.build" />
+            </tasks>
+            <artifacts>
+              <artifact src="source????" dest="Destination???" />
+            </artifacts>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+  <agents>
+    <agent hostname="NYCWSIVY1" ipaddress="172.31.109.88" uuid="794e63e1-fdcf-43a5-b9a2-e03930ccf246" />
+  </agents>
+</cruise>
+
+Copyright © 2010 ThoughtWorks, Inc. Go Version: 2.1.0(11953-d38ed30420cf) (cc) CCTray Feed Server Details Community Support Help
