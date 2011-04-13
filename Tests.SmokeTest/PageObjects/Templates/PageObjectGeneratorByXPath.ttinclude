@@ -1,7 +1,5 @@
-<#@ template language="C#v3.5"  hostspecific="True" debug="True" #>
-<#@ output extension="cs" #>
 <#@ assembly name="System.Core.dll" #>
-<#@ assembly name = "SeleniumObjectModel.dll" #>
+<#@ assembly name = "D:\Personal\Projects\Projects\SeleniumDesign\Sources\_dependencies\SeleniumPageObjects\SeleniumObjectModel.dll" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="SeleniumObjectModel.Template" #>

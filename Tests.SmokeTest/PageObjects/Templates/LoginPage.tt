@@ -1,6 +1,6 @@
-<#@ template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" language="C#v3.5" debug="true" hostSpecific="true" #>
-<#@ output extension=".cs" #>
+<#@ template language="C#" debug="true" hostSpecific="true" #>
 <#@ include file="PageObjectGeneratorByXPath.ttinclude" #>
+<#@ output extension=".generated.cs" #>
 <#
  	string url = "Login.aspx";
    
